@@ -55,9 +55,13 @@ public class Zestaw2 {
         System.out.println(x*7);
         System.out.println(x/13);
         System.out.println(x%7);
-        System.out.println();
+        System.out.println(x/14);
         System.out.println(Math.pow(x,45));
-        System.out.println();
+        System.out.println(Integer.toBinaryString(x | 67));
+        System.out.println(x & 59);
+        System.out.println(x ^ 23);
+        System.out.println(x<<5);
+        System.out.println(x>>6);
 
     }
 }
