@@ -93,7 +93,9 @@ public class Zestaw4 {
         System.out.println("Suma ujemnych -> " + suma);
     }
     static void sumaOdwrotnosci(int[] tab){
-
+        double suma = 0;
+        for(int i=0;i<tab.length;i++) suma += (double) 1/tab[i];
+        System.out.println("Suma Odwrotnosci -> " + suma);
     }
     static void sredniaArytmetyczna(int[] tab){
         int suma = 0;
@@ -110,10 +112,42 @@ public class Zestaw4 {
     static void sredniaHarmoniczna(int[] tab){
         double mianownik = 0;
         for( int i=0;i<tab.length;i++){
-
+            mianownik = (double) 1/tab[i];
         }
+        System.out.println("Srednia harmoniczna -> " + tab.length/mianownik);
     }
+    static void funkcjaLiniowa(int[] tab, int a, int b){
+        for(int i=0;i<tab.length;i++) System.out.print(a*tab[i]+b + " ");
+        System.out.println();
+    }
+    static void funkcjaKwadratowa(int[] tab,int a,int b,int c){
+        for(int i=0;i<tab.length;i++) System.out.print(a*Math.pow(tab[i],2.0)+b*tab[i]+c + " ");
+        System.out.println();
+    }
+    static void funkcjaWykladnicza(int[] tab,int a){
+        for(int i=0;i<tab.length;i++) System.out.print(Math.pow(a,tab[i]) + " ");
+        System.out.println();
+    }
+    static void funkcjaSignum(int[] tab){
 
+    }
+    static void  najdluzszyCiagDodatnich(int[] tab){
+
+    }
+    static void najdluzszyCiagUjemnych(int[] tab){
+
+    }
+    static void odwrocTablice(int[] tab){
+
+    }
+    static void odwrocTablice(int[] tab,int indeksStart,int indeksStop){
+        for(int i=0;i<=indeksStop-indeksStart;i++){
+            int pom = tab[indeksStart+i];
+            tab[i]=tab[indeksStop-i];
+            tab[indeksStop-i]=pom;
+        }
+        wypiszTablice(tab,2,4);
+    }
 
     static void generujTablice(int n, int minWartosc, int maxWartosc){
         Random rand = new Random();
@@ -122,6 +156,7 @@ public class Zestaw4 {
             tab[i] = (int)(Math.random()* (maxWartosc-minWartosc+1)+ minWartosc);
         }
         wypiszTablice(tab,2,4);
+        odwrocTablice(tab, 2, 5);
         ileNieparzystych(tab);
         ileParzystych(tab);
         ileDodatnich(tab);
@@ -136,6 +171,13 @@ public class Zestaw4 {
         sredniaArytmetyczna(tab);
         sredniaGeometryczna(tab);
         sredniaHarmoniczna(tab);
+        funkcjaLiniowa(tab, 2, 5);
+        funkcjaKwadratowa(tab, 2, 3, 4);
+        funkcjaWykladnicza(tab, 2) ;
+        funkcjaSignum(tab);
+        najdluzszyCiagDodatnich(tab);
+        najdluzszyCiagUjemnych(tab);
+        odwrocTablice(tab);
     }
 
 
