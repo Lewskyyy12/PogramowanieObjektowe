@@ -3,6 +3,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.lang.String;
 
 public class Zestaw1
 {
@@ -110,12 +111,12 @@ public class Zestaw1
 
 
 
-        //zad11
-        System.out.println("Zadanie 11");
-        String wodrze = "wodrze";
-        wodrze = wodrze.repeat(5);
-        System.out.println(wodrze);
-        System.out.println();
+//        //zad11
+//        System.out.println("Zadanie 11");
+//        String wodrze = "wodrze";
+//        wodrze = wodrze.repeat(5);
+//        System.out.println(wodrze);
+//        System.out.println();
 
 
         //zad12
