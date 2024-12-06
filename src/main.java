@@ -6,6 +6,7 @@ public static void main(String[] args) {
     Produkt jablka = new Produkt("Jablka",2.55,30);
     Produkt chipsy = new Produkt("Chipsy",3.25,40);
     Produkt Zubrowka = new Produkt("Zubrowka",24.25,100);
+    Produkt piwoKasztelan = new Produkt("piwoKasztelan",3.76,50);
     KoszykZakupowy koszyk = new KoszykZakupowy();
     koszyk.dodajProdukt(kaszanka,15);
     koszyk.dodajProdukt(jablka,15);
@@ -24,5 +25,15 @@ public static void main(String[] args) {
     Dawid.dodajZamowienie(drugiezamowienie);
     Dawid.wyswietlHistorieZamowien();
     Dawid.obliczLacznyKosztZamowien();
+    System.out.println("Od tad sprawdzaj");
+    Sklep monopolowy = new Sklep();
+    System.out.println("Asortyment monopolowego: ");
+    monopolowy.dodajProdukt(Zubrowka);
+    monopolowy.dodajProdukt(piwoKasztelan);
+    monopolowy.wyswietlOferty();
+    KoszykZakupowy koszMonopolowy = new KoszykZakupowy();
+    monopolowy.zakupy(koszMonopolowy,Zubrowka,10);
+    koszMonopolowy.wyswietlZawartoscKoszyka();
+    monopolowy.wyswietlOferty();
 }
 }

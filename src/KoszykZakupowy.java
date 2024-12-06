@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 
 public class KoszykZakupowy {
-    private ArrayList<Produkt> listaProduktów = new ArrayList<>();
+    private ArrayList<Produkt> listaProduktów;
+
+    public KoszykZakupowy() {
+        this.listaProduktów = new ArrayList();
+    }
+
     public void dodajProdukt(Produkt produkt, int ilosc){
         if(produkt.getIloscNaMagazynie() > ilosc){
             Produkt produktDoListy = new Produkt(produkt.getNazwa(), produkt.getCena(), produkt.getIloscNaMagazynie());
@@ -23,5 +28,9 @@ public class KoszykZakupowy {
             wartoscKoszyka += listaProduktów.get(i).getIloscNaMagazynie()*listaProduktów.get(i).getCena();
         }
         return wartoscKoszyka;
+    }
+
+    public ArrayList<Produkt> getListaProduktów() {
+        return listaProduktów;
     }
 }
