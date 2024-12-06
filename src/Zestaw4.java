@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -6,13 +7,12 @@ public class Zestaw4 {
     static void wypiszTablice( int[] tab, int n, int m) {
         int a = 0;
         while (a < tab.length) {
-            for (int k = 0; k < m; k++) {
                 for (int j = 0; j < n; j++) {
                     if(a<=tab.length-1) System.out.print(tab[a++] + " ");
                     else System.out.print(" ");
                 }
                 System.out.println();
-            }
+
         }
     }
     static void ileNieparzystych(int[] tab){
@@ -129,22 +129,52 @@ public class Zestaw4 {
         System.out.println();
     }
     static void funkcjaSignum(int[] tab){
-
+        for(int i=0;i<tab.length;i++){
+            if(tab[i]==0) System.out.print("0 ");
+            else if(tab[i]>1) System.out.print("1 ");
+            else System.out.print("-1 ");
+        }
     }
     static void  najdluzszyCiagDodatnich(int[] tab){
-
+        int max =0;
+        int count =0;
+        for(int i=0;i<tab.length;i++){
+            if(tab[i]>0) count ++;
+            else if(tab[i]<=0 && count > max || max<count && i == tab.length-1){
+                max = count;
+                count = 0;
+            }
+            else count = 0;
+        }
+        System.out.println("NajdluzszyCiagDodatnich -> " + max);
     }
     static void najdluzszyCiagUjemnych(int[] tab){
-
+        int max =0;
+        int count =0;
+        for(int i=0;i<tab.length;i++){
+            if(tab[i]<0) count ++;
+            else if(tab[i]>=0 && count > max || max<count && i == tab.length-1){
+                max = count;
+                count = 0;
+            }
+            else count = 0;
+        }
+        System.out.println("NajdluzszyCiagUjemnych -> " + max);
     }
-    static void odwrocTablice(int[] tab){
-
+    public static void odwrocTablice(int[] tab){
+        for(int i=0;i<tab.length/2+1;i++){
+            int temp = tab[i];
+            tab[i]=tab[tab.length-i-1];
+            tab[tab.length-i-1]=temp;
+        }
+        System.out.println("Odwrocona Tablica");
+        wypiszTablice(tab,4,2);
     }
     static void odwrocTablice(int[] tab,int indeksStart,int indeksStop){
-        for(int i=0;i<=indeksStop-indeksStart;i++){
-            int pom = tab[indeksStart+i];
-            tab[i]=tab[indeksStop-i];
-            tab[indeksStop-i]=pom;
+        for(int i=0;i<(indeksStop-indeksStart)/2+1;i++){
+            int temp = tab[indeksStart+i];
+            tab[indeksStart+i]=tab[indeksStop-i];
+            tab[indeksStop-i]=temp;
         }
         wypiszTablice(tab,2,4);
     }
@@ -155,8 +185,12 @@ public class Zestaw4 {
         for(int i=0;i<n;i++){
             tab[i] = (int)(Math.random()* (maxWartosc-minWartosc+1)+ minWartosc);
         }
+
         wypiszTablice(tab,2,4);
-        odwrocTablice(tab, 2, 5);
+        najdluzszyCiagUjemnych(tab);
+        najdluzszyCiagDodatnich(tab);
+        odwrocTablice(tab);
+        odwrocTablice(tab, 1, 4);
         ileNieparzystych(tab);
         ileParzystych(tab);
         ileDodatnich(tab);
@@ -175,19 +209,41 @@ public class Zestaw4 {
         funkcjaKwadratowa(tab, 2, 3, 4);
         funkcjaWykladnicza(tab, 2) ;
         funkcjaSignum(tab);
-        najdluzszyCiagDodatnich(tab);
-        najdluzszyCiagUjemnych(tab);
-        odwrocTablice(tab);
+
+
+
     }
 
+    public static void generujZakres(int n, int minWartosc, int maxWartosc){
+        Random rand = new Random();
+        int[] tab = new int[n];
+        for(int i=0;i<n;i++){
+            tab[i]= (int) (Math.random() *(maxWartosc-minWartosc +1) + minWartosc);
+        }
+        int a=0;
+        int em=3;
+        while(a<tab.length){
+                for(int j=0;j<em;j++){
+                    if(tab[a]>0) System.out.print(" ");
+                    if(tab[a]>0 && tab[a]<10) System.out.print(" ");
+                    if(tab[a]<0 && tab[a]>-10) System.out.print(" ");
+                    if(a<tab.length) System.out.print(tab[a++]+" ");
+                    if(tab[a]==0) System.out.print("  ");
+                    else System.out.print(" ");
+                }
+                System.out.println();
+
+        }
+    }
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
         //zad1
         int n = scan.nextInt();
-        generujTablice(n,-20,20);
-
+       // generujTablice(n,-20,20);
+        generujZakres(n, -20,30);
+        ArrayList<Integer> Arraylist = new ArrayList<Integer>();
 
     }
 }
