@@ -1,0 +1,273 @@
+import java.util.ArrayList;
+import java.util.Objects;
+
+class Elf{
+    private String imie;
+    private String stanowisko;
+    private int wiek;
+
+    public Elf(String imie, String stanowisko, int wiek) {
+        this.imie = imie;
+        this.stanowisko = stanowisko;
+        this.wiek = wiek;
+    }
+    public void przedstawSie(){
+        System.out.println("Cześć, nazywam się " + this.imie+ ", mam " + this.wiek + " lat, a moje stanowisko pracy to "+ this.stanowisko);
+    }
+
+    public String getImie() {
+        return imie;
+    }
+
+    public String getStanowisko() {
+        return stanowisko;
+    }
+
+    public int getWiek() {
+        return wiek;
+    }
+
+    public void setImie(String imie) {
+        if(imie == null){
+            throw new RuntimeException("Brak imienia");
+        }
+        this.imie = imie;
+    }
+
+    public void setWiek(int wiek){
+        if(wiek<0 ){
+            throw new RuntimeException("Wiek nie moze byc ujemny");
+        }
+        this.wiek = wiek;
+    }
+
+    public void setStanowisko(String stankowisko){
+        if(stankowisko==null){
+            throw  new RuntimeException("Brak Stanowiska");
+        }
+        this.stanowisko = stankowisko;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Elf elf = (Elf) o;
+        return wiek == elf.wiek && Objects.equals(imie, elf.imie) && Objects.equals(stanowisko, elf.stanowisko);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.wiek + this.imie.getBytes().hashCode()+ this.stanowisko.getBytes().hashCode();
+    }
+
+    @Override
+    public String toString() {
+
+        return this.imie+" " +this.stanowisko + " " + this.wiek;
+    }
+}
+
+class Fabryka{
+    private ArrayList<Elf> listaElfow;
+    private int dlGeo;
+    private int szGeo;
+
+    @Override
+
+    public String toString(){
+        return "Dlugosc =" + dlGeo + "szerokosc "+ szGeo;
+    }
+    @Override
+    public int hashCode() {
+        return dlGeo + szGeo + listaElfow.hashCode();
+    }
+
+    public Fabryka(ArrayList<Elf> listaElfow, int dlGeo, int szGeo) {
+        this.listaElfow = listaElfow;
+        this.dlGeo = dlGeo;
+        this.szGeo = szGeo;
+    }
+    public Fabryka(int dlGeo,int szGeo){
+        this.listaElfow = new ArrayList<>();
+        this.dlGeo =dlGeo;
+        this.szGeo =szGeo;
+    }
+
+    public void dodajPracownika(String imie, String stanowisko, int wiek){
+        Elf efik = new Elf(imie,stanowisko,wiek);
+        listaElfow.add(efik);
+    }
+
+    public void doajPracownika(Elf elfik){
+        listaElfow.add(elfik);
+    }
+
+    public void usunPracownika(Elf elfik){
+        listaElfow.remove(elfik);
+    }
+    public Elf najstarszyPracownik(){
+        int i =0;
+        int wiek = listaElfow.get(i).getWiek();
+        for(int j=0;j< listaElfow.size();j++){
+            if(listaElfow.get(j).getWiek()>wiek){
+                wiek = listaElfow.get(j).getWiek();
+                i = j;
+            }
+        }
+        return listaElfow.get(i);
+    }
+
+    public ArrayList<Elf> getListaElfow() {
+        return listaElfow;
+    }
+    public void setListaElfow(ArrayList<Elf> listaElfow){
+        if(listaElfow.size()<=0){
+            throw new RuntimeException("Lista elfow nie moze byc pusta!");
+        }
+        this.listaElfow=listaElfow;
+    }
+
+    public int getDlGeo() {
+        return dlGeo;
+    }
+
+    public int getSzGeo() {
+        return szGeo;
+    }
+
+    public void setDlGeo(int dlGeo) {
+        if(dlGeo<-180 || dlGeo >180){
+            throw new RuntimeException("Nie poprawna dlugosc geograficzna");
+        }
+        this.dlGeo = dlGeo;
+    }
+
+    public void setSzGeo(int szGeo) {
+        if(szGeo<-90 || szGeo>90){
+            throw  new RuntimeException("Nie poprawna szerokosc geograficzna");
+        }
+        this.szGeo = szGeo;
+    }
+}
+
+class Renifer{
+    private String imie;
+    private int predkosc;
+
+    @Override
+    public String toString(){
+        return this.imie+ " "+ predkosc;
+    }
+    @Override
+    public int hashCode() {
+        return this.predkosc + this.imie.hashCode();
+    }
+
+    public Renifer(String imie, int predkosc) {
+        this.imie = imie;
+        this.predkosc = predkosc;
+    }
+    public void nakarmRenifera(){
+        this.predkosc=this.predkosc+5;
+    }
+
+    public int getPredkosc() {
+        return predkosc;
+    }
+
+    public String getImie() {
+        return imie;
+    }
+
+    public void setPredkosc(int predkosc) {
+        if(predkosc<0){
+            throw new RuntimeException("Predkosc nie moze byc ujemna");
+        }
+        this.predkosc = predkosc;
+    }
+
+    public void setImie(String imie) {
+        if(imie==null){
+            throw  new RuntimeException("Renifer musi miec imie");
+        }
+        this.imie = imie;
+    }
+}
+
+class Sanie{
+    private ArrayList<Renifer> listaReniferow;
+
+    @Override
+    public String toString(){
+        String listaReni="";
+        for(Renifer i: listaReniferow){
+            listaReni+=i+ "\n";
+        }
+        return  listaReni;
+    }
+    @Override
+    public int hashCode() {
+        return  this.listaReniferow.hashCode();
+    }
+
+    public Sanie(ArrayList<Renifer> listaReniferow) {
+        this.listaReniferow = listaReniferow;
+    }
+    public Sanie(){
+        this.listaReniferow = new ArrayList<>();
+    }
+
+    public void dodajRenifera(Renifer renifer){
+        listaReniferow.add(renifer);
+    }
+    public int sumaPredkosci(){
+        int sumaPredkosci=0;
+        for(Renifer i: listaReniferow){
+            sumaPredkosci+=i.getPredkosc();
+        }
+        return sumaPredkosci;
+    }
+    public Renifer najwolniejszyRenifer(){
+        Renifer najwonleniszy = listaReniferow.get(0);
+        for(int j=0;j<listaReniferow.size();j++){
+            if(listaReniferow.get(j).getPredkosc()<najwonleniszy.getPredkosc()) najwonleniszy=listaReniferow.get(j);
+
+        }
+        return najwonleniszy;
+    }
+    public ArrayList<Renifer> getListaReniferow(){
+        return this.listaReniferow;
+    }
+    public void setListaReniferow(ArrayList<Renifer> listaReniferow){
+        if(listaReniferow.size()<=0){
+            throw new RuntimeException("Lista reniferow nie moze byc pusta");
+        }
+        this.listaReniferow=listaReniferow;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Elf elfik = new Elf("Marcin","Pakowacz",25);
+        elfik.przedstawSie();
+        Renifer renifer = new Renifer("Stefan", 25);
+        System.out.println(renifer.getPredkosc());
+        renifer.nakarmRenifera();
+        System.out.println(renifer.getPredkosc());
+        Renifer renifer1 = new Renifer("Stachu", 15);
+        Sanie sanie = new Sanie();
+        sanie.dodajRenifera(renifer);
+        sanie.dodajRenifera(renifer1);
+        Renifer renifer2 = sanie.najwolniejszyRenifer();
+        System.out.println(sanie.sumaPredkosci());
+        System.out.println(sanie.toString());
+        Elf eficki = new Elf("Grazyna", "Ekspedycja",65);
+        Fabryka farbyka = new Fabryka(25,45);
+        farbyka.doajPracownika(elfik);
+        farbyka.doajPracownika(eficki);
+        farbyka.usunPracownika(eficki);
+        System.out.println(farbyka.najstarszyPracownik().getImie());
+    }
+}
