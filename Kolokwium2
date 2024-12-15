@@ -161,7 +161,7 @@ class Renifer{
     }
     @Override
     public int hashCode() {
-        return this.predkosc + this.imie.hashCode();
+        return this.predkosc + this.imie.getBytes().hashCode();
     }
 
     public Renifer(String imie, int predkosc) {
