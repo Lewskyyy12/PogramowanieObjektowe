@@ -52,5 +52,7 @@ public class main {
         Klient daw = new KlientIndywidualny("Dawid","Lewandowski", 29);
         daw.wypisz();
         monopolowy.cosik();
+
     }
+
 }
