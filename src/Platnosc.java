@@ -1,4 +1,4 @@
-public class Platnosc {
+public class Platnosc implements Plac{
     private String statusPlatnosci;
     private int kwota;
 
@@ -6,6 +6,7 @@ public class Platnosc {
         this.statusPlatnosci = statusPlatnosci;
         this.kwota = kwota;
     }
+    @Override
     public void  zaplac(){
         this.statusPlatnosci = "Oplacone";
         this.kwota = 0;

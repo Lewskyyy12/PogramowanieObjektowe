@@ -1,4 +1,4 @@
-public class Produkt {
+public class Produkt implements Produkcik{
     private String nazwa;
     private double cena;
     private int iloscNaMagazynie;
@@ -8,13 +8,16 @@ public class Produkt {
         this.cena = cena;
         this.iloscNaMagazynie = iloscNaMagazynie;
     }
+    @Override
+
     public void wyswietlInformacje(){
         System.out.println("Nazwa: " + nazwa + "\ncena: " + cena + "\nilosc na Magazynie: " + iloscNaMagazynie);
     }
-
+    @Override
     public void dodajDoMagazynu(int ilosc){
         iloscNaMagazynie += ilosc;
     }
+    @Override
     public void usunZMagazynu(int ilosc){
         if(iloscNaMagazynie > ilosc){
             iloscNaMagazynie -= ilosc;

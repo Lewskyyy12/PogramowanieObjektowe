@@ -1,28 +1,34 @@
 import java.util.ArrayList;
 
-public class Klient {
-    private String imie;
-    private String nazwisko;
-    private ArrayList<Zamowienie> listaZamowien = new ArrayList<>();
+public class Klient extends Osoba implements Kliencik {
 
-    public Klient(String imie, String nazwisko, Zamowienie zamowiemie) {
-        this.imie = imie;
-        this.nazwisko = nazwisko;
-        listaZamowien.add(zamowiemie);
+    private ArrayList<Zamowienie> listaZamowien;
+
+    public Klient(String imie, String nazwisko) {
+        super(imie, nazwisko);
+        listaZamowien = new ArrayList<>();
+
     }
+
+    @Override
     public void dodajZamowienie(Zamowienie zamowiene) {
             listaZamowien.add(zamowiene);
     }
+    @Override
     public void wyswietlHistorieZamowien(){
         for  (Zamowienie i : listaZamowien){
             i.wyswietlZamowienia();
         }
     }
+    @Override
     public void obliczLacznyKosztZamowien(){
         double wartoscCalkowita =0;
         for(Zamowienie z : listaZamowien){
             wartoscCalkowita+=z.getKoszyk().obliczCalkowitaWartosc();
         }
         System.out.println(wartoscCalkowita);
+    }
+    public void wypisz(){
+        System.out.println(imie +" "+ nazwisko);
     }
 }

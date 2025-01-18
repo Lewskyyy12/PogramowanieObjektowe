@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
-public class KoszykZakupowy {
+public class KoszykZakupowy implements KoszykZak{
     private ArrayList<Produkt> listaProduktów;
 
     public KoszykZakupowy() {
         this.listaProduktów = new ArrayList();
     }
+
+    @Override
 
     public void dodajProdukt(Produkt produkt, int ilosc){
         if(produkt.getIloscNaMagazynie() > ilosc){
@@ -16,12 +18,16 @@ public class KoszykZakupowy {
         }
         else System.out.println("Brak ilosci na magzynie");
     }
+    @Override
+
     public void wyswietlZawartoscKoszyka(){
         for(int i=0;i<listaProduktów.size();i++){
             System.out.println(listaProduktów.get(i).getNazwa());
             System.out.println(listaProduktów.get(i).getIloscNaMagazynie());
         }
     }
+    @Override
+
     public double obliczCalkowitaWartosc(){
         double wartoscKoszyka = 0;
         for(int i =0;i<listaProduktów.size();i++){
