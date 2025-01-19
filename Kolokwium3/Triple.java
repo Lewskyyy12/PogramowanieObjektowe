@@ -1,7 +1,7 @@
 public class Triple<T> {
-    T first;
-    T second;
-    T third;
+    private T first;
+    private T second;
+    private T third;
 
     public Triple(T first, T second, T third) {
         this.first = first;
